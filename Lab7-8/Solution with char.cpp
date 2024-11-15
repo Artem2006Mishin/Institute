@@ -8,7 +8,7 @@ int main()
 {
 	setlocale(LC_ALL, "RU");
 
-	char str[] = "AAB BCA CCB BABC";
+	char str[] = "AAB BCCA CCB BABCC";
 	char str1[] = "AA"; // НЕ содержит
 	char str2[] = "BC"; // содержит
 	
