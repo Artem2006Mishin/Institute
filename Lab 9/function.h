@@ -1,16 +1,24 @@
 #pragma once
 
-const int N = 3;
-
 struct Stack
 {
-	int* arr = new int[N];
-	int top = -1;
+	// n - вместимость 1-го массива 
+	// m - кол-во массивов 
+	int n, m;
+	int* arr = new int[n * m];
+	int* top = new int[m]; // | -1 -1 -1 |
+	int* floor = new int[m]; // | 2 5 8 |
+
+	Stack(int _n, int _m) : n(_n), m(_m) {
+		for (int i = 0; i < m; i++) {
+			top[i] = -1; 
+			floor[i] = (i + 1) * n - 1; 
+		}
+	}
 };
 
-void push(const int value, Stack* stack);
-void pop(Stack* stack);
-bool empty(Stack* stack);
-bool full(Stack* stack);
-int top(Stack* stack);
-void print(Stack* stack);
+bool empty(Stack* stack, int index);
+bool full(Stack* stack, int index);
+void push(Stack* stack, int index, const int value);
+int pop(Stack*& stack, int index);
+void print(Stack*& stack, int index);
