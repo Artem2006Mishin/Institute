@@ -2,36 +2,41 @@
 #include "function.h"
 using namespace std;
 
+/*
+Мишин Артем 24ВП1
+*/
+
 int main()
 {
 	setlocale(LC_ALL, "RU");
-	Stack* mass = new Stack[3];
-	
-	push(1, &mass[0]);
-	push(2, &mass[0]);
-	print(&mass[0]);
-	pop(&mass[0]);
-	print(&mass[0]);
 
-	push(100, &mass[1]);
-	push(200, &mass[1]);
-	push(300, &mass[1]);
-	if (full(&mass[1])) {
-		cout << "Массив заполнен" << endl;
+	Stack* stack = new Stack(3, 3);
+
+	if (empty(stack, 1)) {
+		cout << "Стек 1 пустой";
 	}
 	else {
-		cout << "В массиве есть место" << endl;
+		cout << "Стек 1 не пустой";
 	}
+	cout << endl;
 
-	if (empty(&mass[2])) {
-		cout << "Массив пустой" << endl;
+	push(stack, 1, 100);
+	push(stack, 1, 200);
+	push(stack, 1, 300);
+	if (full(stack, 1)) {
+		cout << "Стек 1 заполнен";
 	}
 	else {
-		cout << "Массив не пустой" << endl;
+		cout << "В стеке 1 есть место";
 	}
-	push(123, &mass[2]);
-	push(456, &mass[2]);
-	top(&mass[2]);
+	cout << endl;
 
+	push(stack, 2, 111);
+	push(stack, 2, 222);
+	int a = pop(stack, 2);
+	cout << "a: " << a << endl;
+	push(stack, 2, 333);
 
+	cout << "Стек 1: "; print(stack, 1);
+	cout << "Стек 2: "; print(stack, 2);
 }
