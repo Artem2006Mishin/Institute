@@ -2,10 +2,10 @@
 #include "function.h"
 using namespace std;
 
-Stack::Stack(int n, int m)
+Stack::Stack()
 {
-	this->n = n;
-	this->m = m;
+	this->n = 3;
+	this->m = 3;
 
 	arr = new int[n * m];
 	top = new int[m];
@@ -16,6 +16,12 @@ Stack::Stack(int n, int m)
 		top[i] = -1;
 		floor[i] = (i + 1) * n - 1;
 	}
+}
+
+Stack::Stack(int n, int m) : Stack()
+{
+	this->n = n;
+	this->m = m;
 }
 
 Stack::~Stack()
