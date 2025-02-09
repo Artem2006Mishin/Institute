@@ -3,7 +3,9 @@
 class Stack
 {
 public:
+	Stack();
 	Stack(int n, int m);
+	Stack(const Stack&);
 	~Stack();
 	bool empty(int index);
 	bool full(int index);
