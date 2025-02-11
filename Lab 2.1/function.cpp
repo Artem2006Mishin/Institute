@@ -1,11 +1,14 @@
 #include <iostream>
+#include <initializer_list>
 #include "function.h"
 using namespace std;
 
-Stack::Stack()
+Stack::Stack() : Stack(3, 3) {}
+
+Stack::Stack(int n, int m) 
 {
-	this->n = 3;
-	this->m = 3;
+	this->n = n;
+	this->m = m;
 
 	arr = new int[n * m];
 	top = new int[m];
@@ -18,17 +21,104 @@ Stack::Stack()
 	}
 }
 
-Stack::Stack(int n, int m) : Stack()
+Stack::Stack(const Stack& other)
 {
-	this->n = n;
+	this->m = other.m;
+	this->n = other.n;
+
+	this->arr = new int[this->n * this->m];
+	this->top = new int[this->m];
+	this->floor = new int[this->m];
+
+	for (int i = 0; i < this->m; i++)
+	{
+		this->top[i] = other.top[i];
+		this->floor[i] = other.floor[i];
+	}
+
+	for (int i = 0; i < this->m * this->n; i++)
+	{
+		this->arr[i] = other.arr[i];
+	}
+}
+
+Stack::Stack(std::initializer_list<int> values, int n, int m)
+{
 	this->m = m;
+	this->n = n;
+
+	this->arr = new int[n * m];
+	this->top = new int[m];
+	this->floor = new int[m];
+
+	// Инициализация top и floor
+	for (int i = 0; i < this->m; i++)
+	{
+		this->top[i] = -1;
+		this->floor[i] = (i + 1) * this->n - 1;
+	}
+
+	int i = 0, j = 0;
+	for (auto elem : values)
+	{
+		// Проверка на переполнение arr
+		if (i >= n * m)
+		{
+			throw std::overflow_error("Too many elements in initializer list");
+		}
+
+		// Проверка на переполнение текущего стека
+		if (j >= m)
+		{
+			throw std::overflow_error("Too many stacks");
+		}
+
+		this->arr[i++] = elem;
+		this->top[j]++;
+
+		// Если текущий стек заполнен, переходим к следующему
+		if (this->floor[j] == this->top[j])
+		{
+			j++;
+		}
+	}
 }
 
 Stack::~Stack()
 {
-	delete[] arr; arr = nullptr;
-	delete[] top; top = nullptr;
-	delete[] floor; floor = nullptr;
+	delete[] arr;
+	delete[] top;
+	delete[] floor;
+}
+
+Stack& Stack::operator=(const Stack& other)
+{
+	this->m = other.m;
+	this->n = other.n;
+
+	if (this->arr != nullptr)
+	{
+		delete[] this->arr;
+		delete[] this->top;
+		delete[] this->floor;
+	}
+
+	this->arr = new int[this->n * this->m];
+	this->top = new int[this->m];
+	this->floor = new int[this->m];
+
+	for (int i = 0; i < this->m; i++)
+	{
+		this->top[i] = other.top[i];
+		this->floor[i] = other.floor[i];
+	}
+
+	for (int i = 0; i < this->m * this->n; i++)
+	{
+		this->arr[i] = other.arr[i];
+	}
+
+	return *this;
 }
 
 bool Stack::empty(int index)
