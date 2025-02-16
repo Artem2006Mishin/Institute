@@ -1,0 +1,38 @@
+body {
+    background-image: url('../img/fon.png') 
+}
+h1.H1 {
+    font-size: 2.3em;
+    color: blue;
+    text-align: center;
+}
+h2.H2 {
+    font-size: 1.3em;
+    color: green;
+    text-align: left;
+}
+hr {
+    height: 3px;
+}
+img {
+    width: 150px;
+    height: 250px;
+    margin: 1px 1px;
+/*    border: 2px solid red;*/
+    float: left;
+    margin-right: 20px;
+}
+/*.text {
+    overflow: hidden;
+}*/
+#beauty {
+    font-size: 25px;
+    font-style: italic;
+}
+#explanation {
+    color: rgb(103, 144, 156);
+}
+#reviews {
+    color: rgb(118, 5, 33);
+    font-weight: bold;
+}
