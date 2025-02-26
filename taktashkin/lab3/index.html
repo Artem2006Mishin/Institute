@@ -1,8 +1,7 @@
 <!DOCTYPE html>
-
 <html lang="ru">
 <head>
-    <title>lab3</title>
+    <title>Будильник</title>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="styles/my.css">
 </head>
@@ -13,6 +12,22 @@
         <input type="time" id="alarmTime">
         <button id="setAlarm">Установить будильник</button>
         <button id="stopAlarm" disabled>Остановить будильник</button>
+
+        <!-- Таблица будильников -->
+        <h2>Таблица будильников</h2>
+        <table id="alarmTable">
+            <thead>
+                <tr>
+                    <th>№</th>
+                    <th>Время до срабатывания</th>
+                    <th>Статус</th>
+                    <th>Время мигания</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Строки будильников будут добавляться сюда -->
+            </tbody>
+        </table>
     </div>
     
     <script src="scripts/script.js"></script>
